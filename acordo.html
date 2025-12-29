@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acordo Serasa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background: transparent;
+            padding: 10px;
+        }
+
+        .acordo-container {
+            max-width: 400px;
+            margin: 0 auto;
+            background: linear-gradient(180deg, #FFFFFF 0%, #FFF9FC 100%);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(232, 0, 112, 0.15), 0 4px 12px rgba(0,0,0,0.05);
+            border: 1px solid rgba(232, 0, 112, 0.1);
+        }
+
+        /* Header */
+        .acordo-header {
+            background: linear-gradient(135deg, #E80070 0%, #FF5994 100%);
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .acordo-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(180deg); }
+        }
+
+        .acordo-header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .acordo-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .acordo-logo svg {
+            height: 28px;
+        }
+
+        .badge-oficial {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            backdrop-filter: blur(4px);
+        }
+
+        .acordo-titulo {
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .acordo-subtitulo {
+            color: rgba(255,255,255,0.9);
+            font-size: 13px;
+        }
+
+        /* Status */
+        .acordo-status {
+            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .status-icon {
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse-icon 2s infinite;
+        }
+
+        @keyframes pulse-icon {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .status-icon svg {
+            width: 12px;
+            height: 12px;
+            color: #10B981;
+        }
+
+        .status-text {
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* Body */
+        .acordo-body {
+            padding: 20px;
+        }
+
+        /* Dados do cliente */
+        .cliente-info {
+            background: #F9FAFB;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+            border: 1px solid #E5E7EB;
+        }
+
+        .cliente-info-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px dashed #E5E7EB;
+        }
+
+        .cliente-avatar {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #E80070 0%, #FF5994 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .cliente-nome {
+            flex: 1;
+        }
+
+        .cliente-nome-text {
+            font-weight: 700;
+            color: #1F2937;
+            font-size: 15px;
+            text-transform: uppercase;
+        }
+
+        .cliente-nome-label {
+            font-size: 11px;
+            color: #6B7280;
+        }
+
+        .cliente-dados {
+            display: grid;
+            gap: 8px;
+        }
+
+        .cliente-dado {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cliente-dado-label {
+            font-size: 12px;
+            color: #6B7280;
+        }
+
+        .cliente-dado-valor {
+            font-size: 13px;
+            font-weight: 600;
+            color: #1F2937;
+            font-family: 'Courier New', monospace;
+        }
+
+        /* Valores */
+        .valores-box {
+            background: linear-gradient(135deg, #FFF5F9 0%, #FFE4EF 100%);
+            border: 2px solid rgba(232, 0, 112, 0.15);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .valor-original {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            padding-bottom: 8px;
+            border-bottom: 1px dashed rgba(232, 0, 112, 0.2);
+        }
+
+        .valor-original-label {
+            font-size: 12px;
+            color: #6B7280;
+        }
+
+        .valor-original-valor {
+            font-size: 14px;
+            color: #9CA3AF;
+            text-decoration: line-through;
+        }
+
+        .valor-acordo {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .valor-acordo-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1F2937;
+        }
+
+        .valor-acordo-valor {
+            font-size: 28px;
+            font-weight: 800;
+            color: #E80070;
+        }
+
+        .desconto-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-top: 8px;
+        }
+
+        /* Código do acordo */
+        .codigo-acordo {
+            background: #1F2937;
+            border-radius: 10px;
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .codigo-label {
+            font-size: 11px;
+            color: #9CA3AF;
+            margin-bottom: 2px;
+        }
+
+        .codigo-valor {
+            font-size: 14px;
+            font-weight: 700;
+            color: #10B981;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 1px;
+        }
+
+        .codigo-icon {
+            width: 36px;
+            height: 36px;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .codigo-icon svg {
+            width: 20px;
+            height: 20px;
+            color: #10B981;
+        }
+
+        /* Data e validade */
+        .info-footer {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 12px;
+            border-top: 1px dashed #E5E7EB;
+        }
+
+        .info-item {
+            text-align: center;
+        }
+
+        .info-item-label {
+            font-size: 10px;
+            color: #9CA3AF;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .info-item-valor {
+            font-size: 13px;
+            font-weight: 600;
+            color: #1F2937;
+        }
+
+        /* Selo de segurança */
+        .selo-seguranca {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 12px;
+            background: #F0FDF4;
+            border-radius: 0 0 20px 20px;
+            margin: 0 -20px -20px -20px;
+        }
+
+        .selo-seguranca svg {
+            width: 16px;
+            height: 16px;
+            color: #16A34A;
+        }
+
+        .selo-seguranca span {
+            font-size: 11px;
+            color: #166534;
+            font-weight: 500;
+        }
+
+        /* Animação de entrada */
+        .acordo-container {
+            animation: fadeInUp 0.5s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Efeito de brilho nas bordas */
+        .acordo-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #E80070, transparent);
+            animation: borderGlow 2s infinite;
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="acordo-container">
+        <!-- Header -->
+        <div class="acordo-header">
+            <div class="acordo-header-content">
+                <div class="acordo-logo">
+                    <svg viewBox="0 0 100 30" fill="white">
+                        <text x="0" y="22" font-family="Inter, sans-serif" font-size="20" font-weight="800">serasa</text>
+                    </svg>
+                    <span class="badge-oficial">
+                        <svg width="10" height="10" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                        </svg>
+                        Oficial
+                    </span>
+                </div>
+                <div class="acordo-titulo">ACORDO DISPONÍVEL</div>
+                <div class="acordo-subtitulo">Feirão Limpa Nome 2025</div>
+            </div>
+        </div>
+
+        <!-- Status -->
+        <div class="acordo-status">
+            <div class="status-icon">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                </svg>
+            </div>
+            <span class="status-text">Acordo Pré-Aprovado</span>
+        </div>
+
+        <!-- Body -->
+        <div class="acordo-body">
+            <!-- Dados do cliente -->
+            <div class="cliente-info">
+                <div class="cliente-info-header">
+                    <div class="cliente-avatar" id="avatar">--</div>
+                    <div class="cliente-nome">
+                        <div class="cliente-nome-label">BENEFICIÁRIO</div>
+                        <div class="cliente-nome-text" id="nome">CARREGANDO...</div>
+                    </div>
+                </div>
+                <div class="cliente-dados">
+                    <div class="cliente-dado">
+                        <span class="cliente-dado-label">CPF</span>
+                        <span class="cliente-dado-valor" id="cpf">***.***.***-**</span>
+                    </div>
+                    <div class="cliente-dado">
+                        <span class="cliente-dado-label">Situação</span>
+                        <span class="cliente-dado-valor" style="color: #EF4444;">NEGATIVADO</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Valores -->
+            <div class="valores-box">
+                <div class="valor-original">
+                    <span class="valor-original-label">Dívida total</span>
+                    <span class="valor-original-valor">R$ 7.566,52</span>
+                </div>
+                <div class="valor-acordo">
+                    <span class="valor-acordo-label">Valor do acordo</span>
+                    <span class="valor-acordo-valor" id="taxa">R$ 78,47</span>
+                </div>
+                <div style="text-align: right;">
+                    <span class="desconto-badge">
+                        <svg width="10" height="10" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M5 2a2 2 0 00-2 2v14l3.5-2 3.5 2 3.5-2 3.5 2V4a2 2 0 00-2-2H5zm2.5 3a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm6.207.293a1 1 0 00-1.414 0l-6 6a1 1 0 101.414 1.414l6-6a1 1 0 000-1.414zM12.5 10a1.5 1.5 0 100 3 1.5 1.5 0 000-3z" clip-rule="evenodd"/>
+                        </svg>
+                        DESCONTO 98,9%
+                    </span>
+                </div>
+            </div>
+
+            <!-- Código do acordo -->
+            <div class="codigo-acordo">
+                <div>
+                    <div class="codigo-label">CÓDIGO DO ACORDO</div>
+                    <div class="codigo-valor" id="codigo">83N2L618362E</div>
+                </div>
+                <div class="codigo-icon">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Data e validade -->
+            <div class="info-footer">
+                <div class="info-item">
+                    <div class="info-item-label">Data</div>
+                    <div class="info-item-valor" id="datahoje">--/--/----</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-item-label">Validade</div>
+                    <div class="info-item-valor" style="color: #EF4444;">HOJE</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-item-label">Protocolo</div>
+                    <div class="info-item-valor" id="protocolo">AMY3PK8JS</div>
+                </div>
+            </div>
+
+            <!-- Selo de segurança -->
+            <div class="selo-seguranca">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                </svg>
+                <span>Documento verificado pelo Serasa</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Pegar parâmetros da URL
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        const cpf = urlParams.get('cpf') || '000.000.000-00';
+        const nome = urlParams.get('nome') || 'NOME DO CLIENTE';
+        const taxa = urlParams.get('taxa') || '78,47';
+        const datahoje = urlParams.get('datahoje') || new Date().toLocaleDateString('pt-BR');
+
+        // Formatar CPF para exibição parcial (privacidade)
+        function formatarCPFParcial(cpf) {
+            const numeros = cpf.replace(/\D/g, '');
+            if (numeros.length === 11) {
+                return `${numeros.substring(0, 3)}.***.**${numeros.substring(8, 9)}-${numeros.substring(9, 11)}`;
+            }
+            return cpf;
+        }
+
+        // Pegar iniciais do nome
+        function getIniciais(nome) {
+            const partes = nome.trim().split(' ');
+            if (partes.length >= 2) {
+                return (partes[0][0] + partes[partes.length - 1][0]).toUpperCase();
+            }
+            return nome.substring(0, 2).toUpperCase();
+        }
+
+        // Gerar código aleatório para protocolo
+        function gerarProtocolo() {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let result = '';
+            for (let i = 0; i < 9; i++) {
+                result += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return result;
+        }
+
+        // Formatar data
+        function formatarData(data) {
+            if (data.includes('-')) {
+                const partes = data.split('-');
+                return `${partes[0]}/${partes[1]}/${partes[2]}`;
+            }
+            return data;
+        }
+
+        // Preencher dados
+        document.getElementById('cpf').textContent = formatarCPFParcial(cpf);
+        document.getElementById('nome').textContent = nome.toUpperCase();
+        document.getElementById('avatar').textContent = getIniciais(nome);
+        document.getElementById('taxa').textContent = `R$ ${taxa}`;
+        document.getElementById('datahoje').textContent = formatarData(datahoje);
+        document.getElementById('protocolo').textContent = gerarProtocolo();
+
+        // Gerar código do acordo baseado em dados
+        const codigoAcordo = '83N2L' + Math.random().toString(36).substring(2, 8).toUpperCase();
+        document.getElementById('codigo').textContent = codigoAcordo;
+    </script>
+</body>
+</html>
